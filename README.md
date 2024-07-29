@@ -16,7 +16,7 @@ Prometheus-compatible metrics, which can be found here.
 This information is crucial for monitoring the performance of nodes or servers. Node
 Exporter needs to be installed on all servers or virtual machines to gather data across
 all nodes. It exposes metrics at the /metrics endpoint on port 9100.
-What is Grafana?
+## What is Grafana?
 Grafana is an open-source web application for multi-platform analytics and
 interactive visualization. It can generate charts, graphs, and alerts for the web when
 connected to supported data sources. A Grafana dashboard consists of one or more
@@ -29,11 +29,14 @@ To install Prometheus, you can install it both through Docker and through the
 command in the system. If you want to install it through the command in the system,
 you can install it in this way. And if you want to install it through Docker, you can do
 it this way
+```
 docker run \
 -p 9090:9090 \
 -v /path/to/prometheus.yml:/etc/prometheus/prometheus.yml \
 prom/prometheus
+```
 If you want to install prometheus through the command
+```
 wget https://github.com/prometheus/prometheus/releases/download/v2.31.1/prometheus-2.31.1.linux-
 amd64.tar.gz
 tar xvfz prometheus-2.31.1.linux-amd64.tar.gz
@@ -66,9 +69,11 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 sudo systemctl start prometheus
 sudo systemctl enable prometheus
+```
 you can see prometheus to this address http://your-ip:9090/metrics
 And if you want to install NodeExport, it can be done in two ways
 via Docker
+```
 sudo docker run -d -p 9100:9100 --net="host" --pid="host" -v "/:/host:ro,rslave" quay.io/prometheus/node-
 exporter --path.rootfs=/host
 through the command
@@ -94,11 +99,16 @@ sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 sudo ufw allow 9100/tcp
+```
 And you can see metrics node exporter on http://your-address:9100/metrics
 and you can install grafana with command
+```
 docker run -d -p 3000:3000 --name=grafana grafana/grafana-enterprise
+```
 You can connect to Grafana through the following address
+```
 http://your-address:3000
+```
 After logging in Grafana, you need to add Prometheus to Grafana
 This is possible through connection
 After establishing the necessary connections with Grafana, now it is necessary to
